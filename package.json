@@ -1,0 +1,20 @@
+{
+  "name": "haircutter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/index.ts -r dotenv/config dotenv-config.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^3.0.4"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^2.1.0",
+    "eslint": "^7.0.0",
+    "prettier": "^2.0.5",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.9.2"
+  }
+}
