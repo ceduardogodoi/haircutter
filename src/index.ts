@@ -41,17 +41,42 @@ const { FB_POST, FB_USER, FB_PASS } = (config().parsed as unknown) as EnvVars;
   );
   const counter = text?.match(/\d*\.\d*/g);
   const commentsCounter = counter?.[0] ?? '1';
-  const commentsLeft = Number((14000 - Number(commentsCounter)).toFixed(0));
+  let commentsLeft = Number((100000 - Number(commentsCounter)).toFixed(0));
 
-  console.log(commentsLeft);
-  for (let i = 0; i < commentsLeft; i++) {
+  let i = 1;
+  var recursiva = setComments();
+
+  async function setComments(){
+    commentsLeft = Number((100000 - Number(commentsCounter)).toFixed(0));
+    console.log(commentsLeft);
+
+    if(commentsLeft > 0){
     const commentDiv = await page.waitForXPath(
       '//div[contains(text(), "Escreva um comentário")]'
     );
 
     await commentDiv.click();
-    await commentDiv.type('Vai ficar careca');
+    await commentDiv.type(`${i} papapa`);
+    await page.keyboard.press('Enter'); 
 
-    await page.keyboard.press('Enter');
+       i++;
+    setTimeout(setComments, 10000);
+
+    }
+
   }
+
+  /* console.log(commentsLeft);
+  for (let i = 0; i < commentsLeft; i++) {
+
+    const commentDiv = await page.waitForXPath(
+      '//div[contains(text(), "Escreva um comentário")]'
+    );
+
+    await commentDiv.click();
+    await commentDiv.type(`${i} papapa`);
+    await page.keyboard.press('Enter');
+  } */
+
+
 })();
